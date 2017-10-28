@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bckgrnd"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="48dp"
+    tools:context="com.muktiwbowo.skripsweet.LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"
+        android:text="Farnotif"
+        android:textAllCaps="true"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:hint="Username"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_style"
+        android:shadowColor="@android:color/transparent"
+        android:text="Log In"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Already have an account ?? Sign Up here"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
+

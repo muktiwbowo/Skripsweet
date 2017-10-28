@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Farnotif</string>
+    <string name="obat_name">Obat</string>
+    <string name="kasus_name">Kasus</string>
+    <string name="konsul_name">Konsultasi</string>
+    <string name="about">Tentang</string>
+    <string name="title_activity_admin">Apoteker</string>
+</resources>
