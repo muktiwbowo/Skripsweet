@@ -6,6 +6,15 @@ package com.muktiwbowo.skripsweet.obat;
 
 public class Obat {
     private String fObat;
+    private String idObat;
+
+    public String getIdObat() {
+        return idObat;
+    }
+
+    public void setIdObat(String idObat) {
+        this.idObat = idObat;
+    }
 
     public String getfObat() {
         return fObat;

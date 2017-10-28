@@ -50,9 +50,11 @@ public class KasusAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_kasus,null);
         }
 
+        TextView idKasus = (TextView) convertView.findViewById(R.id.txt_urut);
         TextView namaKasus = (TextView) convertView.findViewById(R.id.txt_kasus);
         TextView namaPenyakit = (TextView) convertView.findViewById(R.id.txt_penyakit);
         Kasus k = dataList.get(position);
+        idKasus.setText(k.getIdKasus());
         namaKasus.setText(k.getNamaKasus());
         namaPenyakit.setText(k.getNamaPenyakit());
         return convertView;

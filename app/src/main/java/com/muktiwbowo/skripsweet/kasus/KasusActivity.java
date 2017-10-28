@@ -72,6 +72,7 @@ public class KasusActivity extends AppCompatActivity {
 
                                 JSONObject obj = response.getJSONObject(i);
                                 Kasus k = new Kasus();
+                                k.setIdKasus(obj.getString("kode_kasus"));
                                 k.setNamaKasus(obj.getString("nama_kasus"));
                                 k.setNamaPenyakit(obj.getString("nama_penyakit"));
                                 k.setNamaPasien(obj.getString("nama_pasien"));

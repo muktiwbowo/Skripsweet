@@ -5,6 +5,7 @@ package com.muktiwbowo.skripsweet.kasus;
  */
 
 public class Kasus {
+    String idKasus;
     String namaKasus;
     String namaPenyakit;
     String namaPasien;
@@ -15,12 +16,12 @@ public class Kasus {
     String namaGejala;
     String rekomendasi;
 
-    public String getRekomendasi() {
-        return rekomendasi;
+    public String getIdKasus() {
+        return idKasus;
     }
 
-    public void setRekomendasi(String rekomendasi) {
-        this.rekomendasi = rekomendasi;
+    public void setIdKasus(String idKasus) {
+        this.idKasus = idKasus;
     }
 
     public String getNamaKasus() {
@@ -85,5 +86,13 @@ public class Kasus {
 
     public void setNamaGejala(String namaGejala) {
         this.namaGejala = namaGejala;
+    }
+
+    public String getRekomendasi() {
+        return rekomendasi;
+    }
+
+    public void setRekomendasi(String rekomendasi) {
+        this.rekomendasi = rekomendasi;
     }
 }

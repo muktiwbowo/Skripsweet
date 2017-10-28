@@ -53,6 +53,7 @@ public class ObatActivity extends AppCompatActivity {
 
                                 JSONObject obj = response.getJSONObject(i);
                                 Obat o = new Obat();
+                                o.setIdObat(obj.getString("kode_obat"));
                                 o.setfObat(obj.getString("nama_obat"));
                                 list.add(o);
                             } catch (JSONException e) {

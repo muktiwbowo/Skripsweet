@@ -53,7 +53,9 @@ public class ObatAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_obat_item,null);
         }
         TextView namaObat = (TextView) convertView.findViewById(R.id.txt_obat);
+        TextView idObat = (TextView) convertView.findViewById(R.id.id_obat);
         Obat o = listObat.get(position);
+        idObat.setText(o.getIdObat());
         namaObat.setText(o.getfObat());
         return convertView;
     }
