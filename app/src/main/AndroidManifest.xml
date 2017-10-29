@@ -43,9 +43,11 @@
             android:name=".AboutActivity"
             android:label="Tentang"
             android:theme="@style/AppTheme" />
-        <activity android:name=".kasus.DetailKasusActivity"
-            android:theme="@style/AppTheme"
-            android:label="Detail Kasus"></activity>
+        <activity
+            android:name=".kasus.DetailKasusActivity"
+            android:label="Detail Kasus"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".apoteker.UpdateDetailActivity"></activity>
     </application>
 
 </manifest>
