@@ -1,6 +1,8 @@
 package com.muktiwbowo.skripsweet;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private RequestQueue requestQueue;
     private ProgressDialog progressDialog;
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_login);
         edtUser = (EditText) findViewById(R.id.edt_username);
         edtPass = (EditText) findViewById(R.id.edt_password);
-        sharedPreferences = getSharedPreferences("users", MODE_APPEND);
+        sharedPreferences = getSharedPreferences("users", Context.MODE_APPEND);
         requestQueue = Volley.newRequestQueue(this);
         progressDialog = new ProgressDialog(this);
         Session session = new Session(this);
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkLogin() {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://dabudabu.000webhostapp.com/login.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://dabudabu.000webhostapp.com/farnotifphp/login.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -68,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getString("hasil").equals("sukses")) {
-                                String role = jsonObject.getJSONObject("data").getString("level");
-                                if (role.equals("user")) {
+                                String role = jsonObject.getJSONObject("data").getString("status");
+                                if (role.equals("pasien")) {
                                     Session session = new Session(getApplicationContext());
                                     session.storeData(jsonObject.getJSONObject("data").toString()
                                             , role);

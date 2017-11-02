@@ -25,7 +25,7 @@ import java.util.List;
 public class KasusActivity extends AppCompatActivity {
 
     private static final String tag = KasusActivity.class.getSimpleName();
-    private static final String url = "http://192.168.58.1/nyoba/getkasus.php";
+    private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/getkasus.php";
     private List<Kasus> list = new ArrayList<Kasus>();
     private ListView listView;
     private KasusAdapter kasusAdapter;

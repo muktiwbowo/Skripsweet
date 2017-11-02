@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context="com.muktiwbowo.skripsweet.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/atas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/menu_circle"
+        android:src="@drawable/ic_case" />
+
+    <TextView
+        android:layout_below="@id/img"
+        android:id="@+id/txt_case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lihat Kasus"
+        android:textStyle="bold"
+        android:layout_marginRight="32dp" />
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_toRightOf="@id/img"
+        android:background="@drawable/menu_circle"
+        android:src="@drawable/ic_ask" />
+
+    <TextView
+        android:layout_below="@id/img1"
+        android:id="@+id/txt_ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Konsultasi"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/txt_case"
+        android:layout_marginLeft="32dp" />
+
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_case"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/menu_circle"
+        android:src="@drawable/ic_obat" />
+
+    <TextView
+        android:layout_below="@id/img2"
+        android:id="@+id/txt_obat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lihat Obat"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp" />
+
+    <ImageView
+        android:id="@+id/img3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_ask"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/img2"
+        android:background="@drawable/menu_circle"
+        android:src="@drawable/ic_about" />
+
+    <TextView
+        android:layout_below="@id/img3"
+        android:id="@+id/txt_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tentang App"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@id/txt_obat"
+        android:layout_marginLeft="32dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

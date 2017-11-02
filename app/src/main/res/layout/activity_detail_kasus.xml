@@ -1,64 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.muktiwbowo.memey.DetailKasusActivity">
+    android:orientation="vertical"
+    tools:context=".kasus.DetailKasusActivity">
 
-    <TextView
-        android:id="@+id/nama_kasus"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/nama_pasien"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:text="Nama Kasus"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nama_kasus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="135dp"
+                android:text="Nama Kasus" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/gender"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Nama Pasien"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nama_pasien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="135dp"
+                android:text="Nama Pasien" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/usia"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Jenis Kelamin"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="135dp"
+                android:text="Jenis Kelamin" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/berat_badan"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Usia Pasien"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/usia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="135dp"
+                android:text="Usia Pasien" />
+
+            <TextView
+                android:layout_toRightOf="@id/usia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+
+                android:text=" cm"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/nama_gejala"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Berat Badan"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/berat_badan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="135dp"
+                android:text="Berat Badan" />
+            <TextView
+                android:layout_toRightOf="@id/berat_badan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+
+                android:text=" Kg"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/nama_obat"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Nama Gejala"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nama_gejala"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="5dp"
+                android:text="Nama Gejala" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/nama_penyakit"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Nama Obat"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nama_obat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="5dp"
+                android:paddingEnd="10dp"
+                android:text="Nama Obat" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:id="@+id/rekomendasi"
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Nama Penyakit"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nama_penyakit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="5dp"
+                android:text="Nama Penyakit" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginBottom="0.8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                
+                android:layout_marginTop="5dp"
+                android:text="Rekomendasi"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rekomendasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="5dp"
+                android:paddingEnd="10dp"
+                android:text="Rekomendasi" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

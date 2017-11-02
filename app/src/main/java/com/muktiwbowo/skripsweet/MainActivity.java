@@ -1,9 +1,12 @@
 package com.muktiwbowo.skripsweet;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ivObat = (ImageView) findViewById(R.id.img2);
         ivKonsul = (ImageView) findViewById(R.id.img1);
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logOut(){
-        SharedPreferences preferences =getSharedPreferences("users", MODE_APPEND);
+        @SuppressLint("WrongConstant") SharedPreferences preferences =getSharedPreferences("users", Context.MODE_APPEND);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();

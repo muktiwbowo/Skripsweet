@@ -36,7 +36,7 @@ import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private static final String url = "http://192.168.58.1/nyoba/getkasus.php";
+    private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/getkasus.php";
     private List<Admin> list = new ArrayList<>();
     private ListView listView;
     private AdminAdapter adminAdapter;

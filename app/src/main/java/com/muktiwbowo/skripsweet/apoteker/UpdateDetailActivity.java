@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class UpdateDetailActivity extends AppCompatActivity {
 
-    private static final String url = "http://192.168.58.1/nyoba/updatekasus.php";
+    private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/updatekasus.php";
     EditText edtId, edtNamaKasus, edtNamaPasien, edtGender, edtUsia,
             edtBB, edtGejala, edtObat, edtPenyakit, edtSolusi;
     Button btnUpdate;
@@ -36,6 +36,8 @@ public class UpdateDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_detail);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         requestQueue = Volley.newRequestQueue(this);
         edtId = (EditText) findViewById(R.id.idKasus);
@@ -123,5 +125,11 @@ public class UpdateDetailActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

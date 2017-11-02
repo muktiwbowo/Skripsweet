@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme.WithoutActionBar" />
         <activity
             android:name=".obat.ObatActivity"
             android:label="@string/obat_name"
@@ -47,7 +47,9 @@
             android:name=".kasus.DetailKasusActivity"
             android:label="Detail Kasus"
             android:theme="@style/AppTheme" />
-        <activity android:name=".apoteker.UpdateDetailActivity"></activity>
+        <activity android:name=".apoteker.UpdateDetailActivity"
+            android:label="Update Kasus Baru"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
