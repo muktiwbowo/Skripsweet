@@ -33,12 +33,14 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private RequestQueue requestQueue;
     private ProgressDialog progressDialog;
+    Button btnRegister;
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         btnLogin = (Button) findViewById(R.id.btn_login);
+        btnRegister = (Button) findViewById(R.id.btn_register);
         edtUser = (EditText) findViewById(R.id.edt_username);
         edtPass = (EditText) findViewById(R.id.edt_password);
         sharedPreferences = getSharedPreferences("users", Context.MODE_APPEND);
@@ -57,6 +59,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkLogin();
+            }
+        });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }

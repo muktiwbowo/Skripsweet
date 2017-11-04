@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.muktiwbowo.skripsweet.kasus.KasusActivity;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ivKonsul = (ImageView) findViewById(R.id.img1);
         ivKasus = (ImageView) findViewById(R.id.img);
         ivAbout = (ImageView) findViewById(R.id.img3);
+
         ivAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

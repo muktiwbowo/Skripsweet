@@ -63,14 +63,14 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         spinnerObat = (MultiSelectionSpinner) findViewById(R.id.spinerObat);
         edtPenyakit = (EditText) findViewById(R.id.edt_penyakit);
         btnCheck = (Button) findViewById(R.id.btn_check);
+        getSpinnerObat();
+        getSpinnerGejala();
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showResult();
             }
         });
-        getSpinnerObat();
-        getSpinnerGejala();
     }
 
     public void showResult(){
@@ -90,9 +90,9 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("id_gejala", spinnerGejala.getSelectedItemsAsString());
-                params.put("id_penyakit", edtPenyakit.getText().toString());
+                params.put("kode_obat", spinnerObat.getSelectedItemsAsString());
 
                 return params;
             }

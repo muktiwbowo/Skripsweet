@@ -47,9 +47,12 @@
             android:name=".kasus.DetailKasusActivity"
             android:label="Detail Kasus"
             android:theme="@style/AppTheme" />
-        <activity android:name=".apoteker.UpdateDetailActivity"
+        <activity
+            android:name=".apoteker.UpdateDetailActivity"
             android:label="Update Kasus Baru"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.WithoutActionBar" />
     </application>
 
 </manifest>

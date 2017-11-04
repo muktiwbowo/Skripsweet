@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bckgrnd"
-    android:gravity="center"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="48dp"
-    tools:context="com.muktiwbowo.skripsweet.LoginActivity">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+    android:background="@drawable/registerbckgrnd"
+    tools:context="com.muktiwbowo.skripsweet.RegisterActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
         android:gravity="center"
-        android:text="Farnotif"
+        android:text="create account"
         android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
         android:textSize="22sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_username"
+        android:id="@+id/edt_rusername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -38,7 +35,7 @@
         android:textColor="@android:color/black" />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/edt_rpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -52,20 +49,23 @@
         android:paddingTop="12dp"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/btn_login"
+    <EditText
+        android:id="@+id/edt_repassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_style"
-        android:shadowColor="@android:color/transparent"
-        android:text="Log In"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_style"
+        android:ems="10"
+        android:paddingLeft="16dp"
+        android:hint="Repeat password"
+        android:inputType="textPassword"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -76,5 +76,5 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white" />
 
-</LinearLayout>
 
+</LinearLayout>
