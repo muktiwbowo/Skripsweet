@@ -1,4 +1,4 @@
-package com.muktiwbowo.skripsweet;
+package com.muktiwbowo.skripsweet.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.muktiwbowo.skripsweet.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="48dp"
-    tools:context="com.muktiwbowo.skripsweet.LoginActivity">
+    tools:context="com.muktiwbowo.skripsweet.login.LoginActivity">
 
     <ImageView
         android:layout_width="wrap_content"

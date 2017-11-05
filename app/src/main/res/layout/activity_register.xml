@@ -8,7 +8,7 @@
     android:gravity="center"
     android:padding="48dp"
     android:background="@drawable/registerbckgrnd"
-    tools:context="com.muktiwbowo.skripsweet.RegisterActivity">
+    tools:context="com.muktiwbowo.skripsweet.login.RegisterActivity">
 
     <TextView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.muktiwbowo.skripsweet;
+package com.muktiwbowo.skripsweet.login;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.muktiwbowo.skripsweet.MainActivity;
+import com.muktiwbowo.skripsweet.R;
 import com.muktiwbowo.skripsweet.apoteker.AdminActivity;
 
 import org.json.JSONObject;

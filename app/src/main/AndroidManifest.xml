@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.WithoutActionBar">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,7 +52,7 @@
             android:label="Update Kasus Baru"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".login.RegisterActivity"
             android:theme="@style/AppTheme.WithoutActionBar" />
         <activity android:name=".apoteker.InputObat"
             android:label="Input Obat"

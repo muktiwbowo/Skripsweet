@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -20,30 +18,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
 import com.muktiwbowo.skripsweet.AboutActivity;
-import com.muktiwbowo.skripsweet.InputKasus;
-import com.muktiwbowo.skripsweet.InputObat;
-import com.muktiwbowo.skripsweet.LoginActivity;
+import com.muktiwbowo.skripsweet.fragment.InputGejala;
+import com.muktiwbowo.skripsweet.fragment.InputKasus;
+import com.muktiwbowo.skripsweet.fragment.InputObat;
+import com.muktiwbowo.skripsweet.login.LoginActivity;
 import com.muktiwbowo.skripsweet.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +51,15 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
-    public void logOut(){
-        @SuppressLint("WrongConstant") SharedPreferences preferences =getSharedPreferences("users", Context.MODE_APPEND);
+    public void logOut() {
+        @SuppressLint("WrongConstant") SharedPreferences preferences = getSharedPreferences("users", Context.MODE_APPEND);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();
         startActivity(new Intent(new Intent(AdminActivity.this, LoginActivity.class)));
         finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -110,6 +94,15 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             case R.id.in_obat:
                 fragment = new InputObat();
                 break;
+            case R.id.in_gejala:
+                fragment = new InputGejala();
+                break;
+            case R.id.nav_about:
+                startActivity(new Intent(AdminActivity.this, AboutActivity.class));
+                break;
+            case R.id.nav_logout:
+                keluarApp();
+                break;
         }
 
         //replacing the fragment
@@ -122,6 +115,28 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
+    private void keluarApp() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle("Keluar dari aplikasi ?");
+        alertBuilder.setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AdminActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedScreen(item.getItemId());
