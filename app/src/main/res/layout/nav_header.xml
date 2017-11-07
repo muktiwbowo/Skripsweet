@@ -12,20 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:src="@drawable/ic_utama"/>
+        android:src="@drawable/ic_person"
+        android:background="@drawable/circle_header"/>
 
     <TextView
         android:id="@+id/namaadmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Android Studio"
+        android:text="admin"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
     <TextView
         android:id="@+id/statusadmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="androidstudio@gmail.com"/>
+        android:text="admin@admin.com"/>
 
 </LinearLayout>

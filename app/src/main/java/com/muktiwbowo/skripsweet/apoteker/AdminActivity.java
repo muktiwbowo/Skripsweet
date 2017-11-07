@@ -23,6 +23,7 @@ import com.muktiwbowo.skripsweet.AboutActivity;
 import com.muktiwbowo.skripsweet.fragment.InputGejala;
 import com.muktiwbowo.skripsweet.fragment.InputKasus;
 import com.muktiwbowo.skripsweet.fragment.InputObat;
+import com.muktiwbowo.skripsweet.fragment.InputPenyakit;
 import com.muktiwbowo.skripsweet.login.LoginActivity;
 import com.muktiwbowo.skripsweet.R;
 
@@ -71,6 +72,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -96,6 +101,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.in_gejala:
                 fragment = new InputGejala();
+                break;
+            case R.id.in_penyakit:
+                fragment = new InputPenyakit();
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(AdminActivity.this, AboutActivity.class));

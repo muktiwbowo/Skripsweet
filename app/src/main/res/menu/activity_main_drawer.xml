@@ -6,16 +6,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/in_kasus"
-            android:icon="@drawable/ic_action_add"
-            android:title="Input Kasus" />
+            android:icon="@drawable/ic_case"
+            android:title="Kasus" />
         <item
             android:id="@+id/in_obat"
-            android:icon="@drawable/ic_action_add"
-            android:title="Input Obat" />
+            android:icon="@drawable/ic_obat"
+            android:title="Obat" />
         <item
             android:id="@+id/in_gejala"
-            android:icon="@drawable/ic_action_add"
-            android:title="Input Gejala" />
+            android:icon="@drawable/ic_gejala"
+            android:title="Gejala" />
+        <item
+            android:id="@+id/in_penyakit"
+            android:icon="@drawable/ic_penyakit"
+            android:title="Penyakit" />
     </group>
 
     <item android:title="Tentang">
@@ -23,11 +27,11 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_about"
-                    android:icon="@drawable/ic_action_add"
+                    android:icon="@drawable/ic_about"
                     android:title="Tentang" />
                 <item
                     android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_action_add"
+                    android:icon="@drawable/ic_close"
                     android:title="Keluar" />
             </group>
         </menu>

@@ -36,7 +36,6 @@ import java.util.List;
  */
 public class InputKasus extends Fragment {
 
-
     private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/getkasus.php";
     private List<Admin> list = new ArrayList<>();
     private ListView listView;
@@ -44,7 +43,7 @@ public class InputKasus extends Fragment {
     RequestQueue requestQueue;
 
     public InputKasus() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -57,7 +56,7 @@ public class InputKasus extends Fragment {
         listView = (ListView) v.findViewById(R.id.list);
         adminAdapter = new AdminAdapter(getActivity(),list);
         listView.setAdapter(adminAdapter);
-
+        getActivity().setTitle("Kasus");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
