@@ -1,0 +1,37 @@
+var classDetected 	= ".recommendation .col-offset-fluid .col-bs12-3";
+var className 		= "recommendation--small";		
+
+//function when users click the outside of classDetected
+$(document).click(function(e) { 
+    if(!$(e.target).closest(classDetected).length) {
+        if($(classDetected).is(":visible")) {
+			var data 	= {
+				type 	: e.type,
+				element : e.target,
+				class 	: className,
+				id 		: e.target.id,
+				target 	: e.target.target,
+				url 	: e.target.href,
+				action 	: e.target.action
+			};
+			console.log(data);
+			parent.postMessage(JSON.stringify(data), "*");
+        }
+    }     
+});
+
+//function when users click the classDetected
+$(classDetected).click(function(e){
+	var classID = ($('div').index(this) / 7);
+	var data 	= {
+		type 	: e.type,
+		element : e.target,
+		class 	: className + '-' + classID,
+		id 		: e.target.id,
+		target 	: e.target.target,
+		url 	: e.target.href,
+		action 	: e.target.action
+	};
+	console.log(data);
+	parent.postMessage(JSON.stringify(data), "*");
+});

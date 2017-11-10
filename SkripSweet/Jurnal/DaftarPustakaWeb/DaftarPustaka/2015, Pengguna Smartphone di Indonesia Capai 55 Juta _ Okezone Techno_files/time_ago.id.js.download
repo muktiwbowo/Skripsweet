@@ -1,0 +1,1 @@
+jQuery.timeago.settings.strings={prefixAgo:null,prefixFromNow:null,suffixAgo:"",suffixFromNow:"dari sekarang",seconds:"baru saja",minute:"satu menit lalu",minutes:"%d menit",hour:"1 jam lalu",hours:"%d jam lalu",day:"kemarin",days:"%d hari lalu",month:"sebulan lalu",months:"%d bulan lalu",year:"setahun lalu",years:"%d tahun lalu"};

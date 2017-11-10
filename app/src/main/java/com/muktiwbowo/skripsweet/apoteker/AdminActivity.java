@@ -72,16 +72,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    public void setActionBarTitle(String title){
-        getSupportActionBar().setTitle(title);
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            keluarApp();
             super.onBackPressed();
         }
     }

@@ -1,0 +1,256 @@
+#komentar {
+    padding: 20px 0 0;
+}
+#komentar .kcm-comments-form {
+    padding: 0 0 20px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 12px;
+}
+#komentar canvas {
+    margin: 0 10px 0 0!important;
+    display: inline;
+}
+#komentar .tanggapi canvas {
+    padding: 10px 0 0;
+    vertical-align: top;
+}
+#komentar .comments-count {
+    padding: 0 0 10px;
+    font-size: 14px;
+}
+#komentar .notes {
+    font-size: 10px;
+    color: #979797;
+    padding: 0px 5px 20px;
+}
+#komentar #comment-input textarea {
+    margin: 0 0 5px!important;
+}
+#komentar textarea {
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 100px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    font-family: inherit;
+    font-size: 14px;
+    resize: none;
+    color: #7E7E7E;
+    margin: 0 0 10px!important;
+    -webkit-appearance: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#komentar input[type=text]:focus,
+#komentar textarea:focus {
+    border: 1px solid #2a2a2a;
+}
+#komentar input[type=text] {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    outline: 0;
+    margin: -2px 5px 0 0;
+    display: inline-block;
+    height: 35px;
+    width: 150px;
+    -webkit-appearance: none;
+}
+#komentar #load-more .btn-primary {
+    background: inherit;
+}
+#komentar .btn-primary {
+    background: #3BA7DF;
+    padding: 12px 15px;
+    margin: -2px 0 0!important;
+    display: inline-block;
+    border-radius: 5px;
+    line-height: 1;
+    vertical-align: top;
+    height: 35px;
+}
+#komentar .btn-primary:hover {
+    background: #0C81BE;
+}
+#komentar a {
+    color: #000;
+    text-decoration: none;
+}
+#komentar a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#komentar .item {
+    border-bottom: 1px solid #ebebeb;
+    padding: 20px 20px 20px 70px;
+    position: relative;
+}
+#komentar .item > div {
+    margin-left: 0!important;
+    font-size: 11px;
+    color: #8c8c8c;
+}
+#komentar .item > div > a {
+    color: #8c8c8c;
+    margin-right: 10px;
+}
+#komentar .item > div > a:hover {
+    color: #2a2a2a;
+    text-decoration: none;
+}
+#komentar hr {
+    display: none;
+}
+#komentar img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 40px;
+    border: 1px solid #dfdfdf;
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+#komentar .message {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+#komentar .name {
+    padding: 0 10px 8px 0;
+    display: inline-block;
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+}
+#komentar .name:hover {
+    color: #e54210;
+}
+#komentar .text-muted {
+    color: #8c8c8c;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    font-size: 11px;
+}
+#komentar #load-more {
+    padding: 10px 10px 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+#komentar #load-more a:hover {
+    color: #e54210;
+}
+
+#komentar .tanggapi,
+#komentar .laporkan {
+    padding: 20px 10px 10px;
+    position: relative;
+    background: #F5F5F5;
+    margin: 20px 0 0;
+    border-radius: 5px;
+}
+#komentar .tanggapi textarea,
+#komentar .laporkan textarea {
+    display: block;
+    width: 100%;
+}
+#komentar .tanggapi .btn-primary,
+#komentar .laporkan .btn-primary {
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;  
+}
+#komentar .tanggapi .close,
+#komentar .laporkan .close {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    cursor: pointer;
+    background: #8c8c8c;
+    color: #fff;
+    padding: 3px 7px 5px;
+    font-size: 14px;
+    border-radius: 10px;
+    line-height: 1;
+}
+#komentar .tanggapi .close:hover,
+#komentar .laporkan .close:hover {
+    background: #000;
+}
+#komentar .tanggapi > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 480px) {
+    #komentar .name {
+        display: block;
+        padding: 0;
+    }
+    #komentar canvas {
+        display: block;
+        margin: 0 0 20px 0!important;
+    }
+    #komentar input[type=text] {
+        margin: 10px 0 0!important;
+        display: block;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    #komentar .btn-primary {
+        margin: 10px 0 0!important;
+        display: block;
+        text-align: center;
+    }
+    #komentar .tanggapi .btn-primary,
+    #komentar .laporkan .btn-primary {
+        display: block;
+    }
+    #komentar .tanggapi canvas {
+        display: block!important;
+    }
+    #komentar .notes {
+        padding: 0 5px 10px;
+    }
+    #komentar {
+        padding: 20px 10px 0;
+    }
+    #komentar .btn-primary {
+        height: 15px;
+    }
+}
+
+span.lv {
+    margin: 0 5px 10px 0;
+    background: #3AA6DF;
+    color: #fff;
+    padding: 1px 4px;
+    display: inline-block;
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+span.lv.hijau {
+    background: #29BA07;
+}
+
+span.lv.merah {
+    background: #E31E26;
+}
+
+span.lv.kuning {
+    background: #ff0;
+    color: #2a2a2a;
+}
+

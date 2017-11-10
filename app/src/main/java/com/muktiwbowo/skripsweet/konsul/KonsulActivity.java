@@ -91,7 +91,17 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_gejala", spinnerGejala.getSelectedItemsAsString());
+                String[] temp = new String[10];
+                JSONObject jsonObject = new JSONObject();
+                for (int i=0; i<10;i++){
+                    temp[i] = spinnerGejala.getSelectedItemsAsString();
+                    try {
+                        jsonObject.put(""+i,temp[i]);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                params.put("id_gejala", jsonObject.toString());
                 params.put("kode_obat", spinnerObat.getSelectedItemsAsString());
 
                 return params;
