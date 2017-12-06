@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context="com.muktiwbowo.skripsweet.AboutActivity">
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logouad"
+        android:layout_marginBottom="18dp"/>
     <TextView
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello ini halaman tentang"/>
+        android:layout_height="wrap_content"
+        android:text="Teknik Informatika"/>
+    <TextView
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fakultas Teknologi Industri"/>
+    <TextView
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Universitas Ahmad Dahlan"/>
+    <TextView
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2017"/>
 
 </LinearLayout>

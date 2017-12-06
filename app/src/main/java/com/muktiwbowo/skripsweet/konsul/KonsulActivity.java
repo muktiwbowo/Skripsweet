@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.guna.libmultispinner.MultiSelectionSpinner;
 import com.muktiwbowo.skripsweet.R;
+import com.muktiwbowo.skripsweet.Url;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,9 +43,13 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
     RequestQueue requestQueue, requestQueueObat, requestQueueGejala;
     EditText edtPenyakit;
     Button btnCheck;
+    private TextView temp;
+    String tempgejala, tempidgejala;
     MultiSelectionSpinner spinnerGejala, spinnerObat;
     ArrayList<String> konsulObats, konsulGejala;
     JSONArray resultObat, resultGejala;
+    List<KonsulGejala> namaNamaGejala;
+    List<String> idGejalaDipilih;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         konsulObats = new ArrayList<String>();
         konsulGejala = new ArrayList<String>();
 
+        temp = (TextView) findViewById(R.id.temp);
         spinnerGejala = (MultiSelectionSpinner) findViewById(R.id.spinerGejala);
         spinnerObat = (MultiSelectionSpinner) findViewById(R.id.spinerObat);
         edtPenyakit = (EditText) findViewById(R.id.edt_penyakit);
@@ -69,41 +75,36 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
             @Override
             public void onClick(View v) {
                 showResult();
+                //showDialog();;
             }
         });
     }
 
     public void showResult(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url.urlRekomendasi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("Response", response);
-
+                Toast.makeText(KonsulActivity.this, response, Toast.LENGTH_SHORT).show();
+                //Log.d("Response", response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(KonsulActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                String[] temp = new String[10];
-                JSONObject jsonObject = new JSONObject();
-                for (int i=0; i<10;i++){
-                    temp[i] = spinnerGejala.getSelectedItemsAsString();
-                    try {
-                        jsonObject.put(""+i,temp[i]);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                Map<String,String> params = new HashMap<String, String>();
+               /* for (int i=0; i<tempgejala.length(); i++){
+                    params.put("id_gejala ["+i+"]", tempidgejala);
+                }*/
+                for(int i = 0;i<idGejalaDipilih.size();i++){
+                    params.put("id_gejala["+i+"]",idGejalaDipilih.get(i));
                 }
-                params.put("id_gejala", jsonObject.toString());
-                params.put("kode_obat", spinnerObat.getSelectedItemsAsString());
-
+                //params.put("id_gejala", tempidgejala);
+                //params.put("kode_obat", spinnerObat.getSelectedItemsAsString());
                 return params;
             }
         };
@@ -132,11 +133,16 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
     }
 
     private void getDataGejala(JSONArray resultGejala) {
+        namaNamaGejala = new ArrayList<>();
         for (int i=0; i<resultGejala.length(); i++){
             try {
                 JSONObject obj = resultGejala.getJSONObject(i);
-                //konsulGejala.add(obj.getString("nama_gejala"));
-                konsulGejala.add(obj.getString("id_gejala"));
+                konsulGejala.add(obj.getString("nama_gejala"));
+                KonsulGejala gejala = new KonsulGejala();
+                gejala.setIdGejala(obj.getString("id_gejala"));
+                gejala.setNamaGejala(obj.getString("nama_gejala"));
+                //konsulGejala.add(obj.getString("id_gejala"));
+                namaNamaGejala.add(gejala);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -193,15 +199,29 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
 
     @Override
     public void selectedIndices(List<Integer> indices) {
+        //tempgejala = indices.toString();
+        //temp.setText(tempgejala);
 
     }
 
     @Override
     public void selectedStrings(List<String> strings) {
-        Toast.makeText(this, strings.toString(), Toast.LENGTH_SHORT).show();
+        tempidgejala = strings.toString();
+        idGejalaDipilih = new ArrayList<>();
+        for(int i =0;i<namaNamaGejala.size();i++){
+            for (String s : strings){
+                if(s.equals(namaNamaGejala.get(i).getNamaGejala())){
+                    idGejalaDipilih.add(namaNamaGejala.get(i).getIdGejala());
+                    break;
+                }
+            }
+
+        }
+         //Toast.makeText(this, String.valueOf(strings.size()), Toast.LENGTH_SHORT).show();
+        //temp.setText(tempidgejala);
     }
 
-    /* private void showDialog(){
+     private void showDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         // Setting Dialog Title
         alertDialogBuilder.setTitle("Rekomendasi");
@@ -222,5 +242,5 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         AlertDialog alertDialog = alertDialogBuilder.create();
         // Showing Alert Message
         alertDialog.show();
-    }*/
+    }
 }
