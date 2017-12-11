@@ -1,5 +1,6 @@
 package com.muktiwbowo.skripsweet.konsul;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,6 @@ import java.util.Map;
 
 public class KonsulActivity extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
 
-
     private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/ceksimilarity.php";
     private static final String urlObat = "https://dabudabu.000webhostapp.com/farnotifphp/getobat.php";
     private static final String urlGejala = "https://dabudabu.000webhostapp.com/farnotifphp/getgejala.php";
@@ -50,6 +50,7 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
     JSONArray resultObat, resultGejala;
     List<KonsulGejala> namaNamaGejala;
     List<String> idGejalaDipilih;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         requestQueue = Volley.newRequestQueue(this);
         requestQueueObat = Volley.newRequestQueue(this);
         requestQueueGejala = Volley.newRequestQueue(this);
+        progressDialog = new ProgressDialog(this);
 
         konsulObats = new ArrayList<String>();
         konsulGejala = new ArrayList<String>();
@@ -81,30 +83,40 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
     }
 
     public void showResult(){
-
+        progressDialog.setMessage("Processing...");
+        progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Url.urlRekomendasi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(KonsulActivity.this, response, Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(KonsulActivity.this);
+                alertDialogBuilder.setTitle("Result");
+                alertDialogBuilder.setMessage(response);
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                //Toast.makeText(KonsulActivity.this, response, Toast.LENGTH_SHORT).show();
                 //Log.d("Response", response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 Toast.makeText(KonsulActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
-               /* for (int i=0; i<tempgejala.length(); i++){
-                    params.put("id_gejala ["+i+"]", tempidgejala);
-                }*/
                 for(int i = 0;i<idGejalaDipilih.size();i++){
                     params.put("id_gejala["+i+"]",idGejalaDipilih.get(i));
                 }
-                //params.put("id_gejala", tempidgejala);
-                //params.put("kode_obat", spinnerObat.getSelectedItemsAsString());
                 return params;
             }
         };
@@ -141,7 +153,6 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
                 KonsulGejala gejala = new KonsulGejala();
                 gejala.setIdGejala(obj.getString("id_gejala"));
                 gejala.setNamaGejala(obj.getString("nama_gejala"));
-                //konsulGejala.add(obj.getString("id_gejala"));
                 namaNamaGejala.add(gejala);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -156,7 +167,6 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         StringRequest requestObat = new StringRequest(urlObat, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                    //JSONObject jsonObject = null;
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     resultObat = jsonObject.getJSONArray("obat");
@@ -199,9 +209,6 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
 
     @Override
     public void selectedIndices(List<Integer> indices) {
-        //tempgejala = indices.toString();
-        //temp.setText(tempgejala);
-
     }
 
     @Override
@@ -219,28 +226,5 @@ public class KonsulActivity extends AppCompatActivity implements MultiSelectionS
         }
          //Toast.makeText(this, String.valueOf(strings.size()), Toast.LENGTH_SHORT).show();
         //temp.setText(tempidgejala);
-    }
-
-     private void showDialog(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        // Setting Dialog Title
-        alertDialogBuilder.setTitle("Rekomendasi");
-
-        // Setting Dialog Message
-        alertDialogBuilder.setMessage("Kebiasaan membeli fenilbutason dihentikan, konsul ke dokter untuk mendapat obat dispepsia atau memberi obat dispepsia yang termasuk OWA misal omeprazol atau famotidin, memberi informasi cara minum antasid dan obat dispepsia yang benar");
-
-        // Setting Icon to Dialog
-
-        // Setting OK Button
-
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        // Showing Alert Message
-        alertDialog.show();
     }
 }
