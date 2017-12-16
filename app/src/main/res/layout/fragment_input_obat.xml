@@ -4,18 +4,24 @@
     android:layout_height="match_parent"
     tools:context="com.muktiwbowo.skripsweet.fragment.InputObat">
 
-    <ListView
-        android:id="@+id/listo"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/listo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fabo"
-        android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_action_add"/>
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_action_add" />
 
 </android.support.design.widget.CoordinatorLayout>

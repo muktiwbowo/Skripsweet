@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".other.MainActivity"
             android:theme="@style/AppTheme.WithoutActionBar" />
         <activity
             android:name=".obat.ObatActivity"
@@ -40,7 +40,7 @@
             android:label="Konsultasi"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".other.AboutActivity"
             android:label="Tentang"
             android:theme="@style/AppTheme" />
         <activity
@@ -54,9 +54,6 @@
         <activity
             android:name=".login.RegisterActivity"
             android:theme="@style/AppTheme.WithoutActionBar" />
-        <activity android:name=".apoteker.InputObat"
-            android:label="Input Obat"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

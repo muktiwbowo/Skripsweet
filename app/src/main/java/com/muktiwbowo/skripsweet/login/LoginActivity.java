@@ -19,8 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.muktiwbowo.skripsweet.MainActivity;
+import com.muktiwbowo.skripsweet.other.MainActivity;
 import com.muktiwbowo.skripsweet.R;
+import com.muktiwbowo.skripsweet.Url;
 import com.muktiwbowo.skripsweet.apoteker.AdminActivity;
 
 import org.json.JSONObject;
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkLogin() {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://dabudabu.000webhostapp.com/farnotifphp/login.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url.uLogin,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -82,10 +83,13 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getString("hasil").equals("sukses")) {
                                 String role = jsonObject.getJSONObject("data").getString("status");
+                                String user = jsonObject.getJSONObject("data").getString("username");
                                 if (role.equals("pasien")) {
                                     Session session = new Session(getApplicationContext());
                                     session.storeData(jsonObject.getJSONObject("data").toString()
                                             , role);
+                                    session.storeUsername(jsonObject.getJSONObject("data").toString(), user);
+
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -93,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Session session = new Session(getApplicationContext());
                                     session.storeData(jsonObject.getJSONObject("data").toString(),
                                             role);
+                                    session.storeUsername(jsonObject.getJSONObject("data").toString(), user);
 
                                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                                     startActivity(intent);
@@ -110,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

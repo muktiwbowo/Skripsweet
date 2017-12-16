@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,13 +38,15 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InputPenyakit extends Fragment {
+public class InputPenyakit extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private List<InPenyakit> pList =new ArrayList<InPenyakit>();
     private ListView listViewp;
     private InPenyakitAdapter adapterPenyakit;
     RequestQueue reqPenyakit, reqInpPenyakit;
     private EditText frPenyakit;
     FloatingActionButton fabp;
+    SwipeRefreshLayout refreshPenyakit;
+
     public InputPenyakit() {
         // Required empty public constructor
     }
@@ -57,8 +60,17 @@ public class InputPenyakit extends Fragment {
         reqInpPenyakit = Volley.newRequestQueue(getActivity());
         listViewp = (ListView) v.findViewById(R.id.listp);
         fabp = (FloatingActionButton) v.findViewById(R.id.fabp);
+        refreshPenyakit = (SwipeRefreshLayout) v.findViewById(R.id.refreshp);
         adapterPenyakit = new InPenyakitAdapter(getActivity(), pList);
         listViewp.setAdapter(adapterPenyakit);
+        refreshPenyakit.setOnRefreshListener(this);
+        refreshPenyakit.post(new Runnable() {
+            @Override
+            public void run() {
+                refreshPenyakit.setRefreshing(true);
+                getFrPenyakit();
+            }
+        });
         getActivity().setTitle("Penyakit");
         fabp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +78,7 @@ public class InputPenyakit extends Fragment {
                 showFormPenyakit();
             }
         });
-        getFrPenyakit();
+        //getFrPenyakit();
 
         return v;
     }
@@ -107,9 +119,10 @@ public class InputPenyakit extends Fragment {
                     String hasil = object.getString("hasil");
                     if (hasil.equals("sukses")){
                         Toast.makeText(getActivity(), object.getString("pesan"), Toast.LENGTH_SHORT).show();
+                        onRefresh();
                     }else {
-
                         Toast.makeText(getActivity(), object.getString("pesan"), Toast.LENGTH_SHORT).show();
+                        onRefresh();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -128,34 +141,46 @@ public class InputPenyakit extends Fragment {
                 return params;
             }
         };
+        reqInpPenyakit.add(request);
     }
 
     private void getFrPenyakit() {
+        refreshPenyakit.setRefreshing(true);
         JsonObjectRequest objectPenyakit = new JsonObjectRequest(Request.Method.GET, Url.urlPenyakit,
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("penyakit");
-                    for (int i=0; i<jsonArray.length(); i++){
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        InPenyakit ip = new InPenyakit();
-                        ip.setIdPenyakit(object.getString("kode_penyakit"));
-                        ip.setNamaPenyakit(object.getString("nama_penyakit"));
-                        pList.add(ip);
+                if (response.length() > 0) {
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("penyakit");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            InPenyakit ip = new InPenyakit();
+                            ip.setIdPenyakit(object.getString("kode_penyakit"));
+                            ip.setNamaPenyakit(object.getString("nama_penyakit"));
+                            pList.add(ip);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    adapterPenyakit.notifyDataSetChanged();
                 }
-                adapterPenyakit.notifyDataSetChanged();
+                refreshPenyakit.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                refreshPenyakit.setRefreshing(false);
             }
         });
         reqPenyakit.add(objectPenyakit);
     }
 
+    @Override
+    public void onRefresh() {
+        pList.clear();
+        adapterPenyakit.notifyDataSetChanged();
+        getFrPenyakit();
+    }
 }

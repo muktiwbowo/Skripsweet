@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:layout_gravity="center"
-    tools:context="com.muktiwbowo.skripsweet.MainActivity">
+    tools:context="com.muktiwbowo.skripsweet.other.MainActivity">
 
     <RelativeLayout
         android:id="@+id/atas"

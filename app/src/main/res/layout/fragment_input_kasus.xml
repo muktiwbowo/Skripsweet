@@ -5,12 +5,15 @@
     android:orientation="vertical"
     tools:context="com.muktiwbowo.skripsweet.fragment.InputKasus">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

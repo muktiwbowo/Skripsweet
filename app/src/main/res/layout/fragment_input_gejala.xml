@@ -1,24 +1,29 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.muktiwbowo.skripsweet.fragment.InputGejala">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/listg"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/listg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab"
-        android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_action_add"/>
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_action_add" />
 
 </android.support.design.widget.CoordinatorLayout>

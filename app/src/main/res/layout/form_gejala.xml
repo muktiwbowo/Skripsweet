@@ -9,7 +9,7 @@
         android:id="@+id/fr_gejala"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="nama gejala"
+        android:hint="Nama gejala"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:inputType="text"/>

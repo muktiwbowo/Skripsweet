@@ -1,4 +1,4 @@
-package com.muktiwbowo.skripsweet;
+package com.muktiwbowo.skripsweet.other;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,15 +11,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.muktiwbowo.skripsweet.R;
 import com.muktiwbowo.skripsweet.kasus.KasusActivity;
 import com.muktiwbowo.skripsweet.konsul.KonsulActivity;
 import com.muktiwbowo.skripsweet.login.LoginActivity;
+import com.muktiwbowo.skripsweet.login.Session;
 import com.muktiwbowo.skripsweet.obat.ObatActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView ivObat, ivKonsul, ivKasus, ivAbout;
+    private TextView name;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         ivKonsul = (ImageView) findViewById(R.id.img1);
         ivKasus = (ImageView) findViewById(R.id.img);
         ivAbout = (ImageView) findViewById(R.id.img3);
+        name = (TextView) findViewById(R.id.name);
+
+        session = new Session(this);
+
+        HashMap<String, String> user = session.getUsername();
+        String nameUser = user.get(Session.KEY_USER);
+        name.setText(nameUser);
 
         ivAbout.setOnClickListener(new View.OnClickListener() {
             @Override

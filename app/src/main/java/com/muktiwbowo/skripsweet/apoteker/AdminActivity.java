@@ -16,10 +16,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-import com.muktiwbowo.skripsweet.AboutActivity;
+import com.muktiwbowo.skripsweet.login.Session;
+import com.muktiwbowo.skripsweet.other.AboutActivity;
 import com.muktiwbowo.skripsweet.fragment.InputGejala;
 import com.muktiwbowo.skripsweet.fragment.InputKasus;
 import com.muktiwbowo.skripsweet.fragment.InputObat;
@@ -27,7 +31,11 @@ import com.muktiwbowo.skripsweet.fragment.InputPenyakit;
 import com.muktiwbowo.skripsweet.login.LoginActivity;
 import com.muktiwbowo.skripsweet.R;
 
+import java.util.HashMap;
+
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    Session session;
+    private TextView namaadmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,16 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_admin);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        /*LayoutInflater inflater = getLayoutInflater();
+        final View adminView = inflater.inflate(R.layout.nav_header,null);
+        namaadmin = (TextView) adminView.findViewById(R.id.namaadmin);
+
+        session = new Session(this);
+        HashMap<String, String> admin = session.getUsername();
+        String adminName = admin.get(Session.KEY_USER);
+        namaadmin.setText(adminName);*/
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

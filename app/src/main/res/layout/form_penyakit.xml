@@ -9,7 +9,7 @@
         android:id="@+id/fr_penyakit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="nama penyakit"
+        android:hint="Nama penyakit"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:inputType="text"/>

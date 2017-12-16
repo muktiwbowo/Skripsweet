@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.muktiwbowo.skripsweet.R;
+import com.muktiwbowo.skripsweet.Url;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +27,6 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private static final String urlReg = "https://dabudabu.000webhostapp.com/farnotifphp/register.php";
     private EditText rUsername, rPassword, rePassword;
     private Button btnCreate;
     ProgressDialog progressDialog;
@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        StringRequest requestRegister = new StringRequest(Request.Method.POST, urlReg, new Response.Listener<String>() {
+        StringRequest requestRegister = new StringRequest(Request.Method.POST, Url.uRegister, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.cancel();

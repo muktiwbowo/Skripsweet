@@ -1,7 +1,9 @@
-package com.muktiwbowo.skripsweet;
+package com.muktiwbowo.skripsweet.other;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.muktiwbowo.skripsweet.R;
 
 public class AboutActivity extends AppCompatActivity {
 

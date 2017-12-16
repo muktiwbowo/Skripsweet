@@ -2,11 +2,14 @@ package com.muktiwbowo.skripsweet.konsul;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,10 +30,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
 
-public class KonsulActivity extends AppCompatActivity {
+public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     RequestQueue requestQueue, reqObat, reqGejala, reqPenyakit;
     Button btnCheck;
@@ -42,6 +46,9 @@ public class KonsulActivity extends AppCompatActivity {
     List<KonsulPenyakit> listPenyakit;
     List<String> idGejalaDipilih, idObatDipilih, idPenyakitDipilih;
     private ProgressDialog progressDialog;
+    String hasil_t, solusi;
+    private TextView hasil, rekomendasi;
+    SwipeRefreshLayout refreshKonsul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,6 @@ public class KonsulActivity extends AppCompatActivity {
         reqObat = Volley.newRequestQueue(this);
         reqGejala = Volley.newRequestQueue(this);
         reqPenyakit = Volley.newRequestQueue(this);
-
         progressDialog = new ProgressDialog(this);
 
         obat = new ArrayList<String>();
@@ -63,14 +69,21 @@ public class KonsulActivity extends AppCompatActivity {
         listObat = new ArrayList<>();
         listPenyakit = new ArrayList<>();
 
+        refreshKonsul = (SwipeRefreshLayout) findViewById(R.id.refreshKonsul);
         spinnerGejala = (MultiSelectSpinner) findViewById(R.id.spinerGejala);
         spinnerPenyakit = (MultiSelectSpinner) findViewById(R.id.spinerPenyakit);
         spinnerObat = (MultiSelectSpinner) findViewById(R.id.spinerObat);
         btnCheck = (Button) findViewById(R.id.btn_check);
-
-        getSpinnerGejala();
-        getSpinnerPenyakit();
-        getSpinnerObat();
+        refreshKonsul.setOnRefreshListener(this);
+        refreshKonsul.post(new Runnable() {
+            @Override
+            public void run() {
+                refreshKonsul.setRefreshing(true);
+                getSpinnerGejala();
+                getSpinnerPenyakit();
+                getSpinnerObat();
+            }
+        });
 
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,11 +95,27 @@ public class KonsulActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            hasil_t = obj.getString("hasil_t");
+                            solusi = obj.getString("rekomendasi");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         AlertDialog.Builder alertDialogBuilder =
                                 new AlertDialog.Builder(KonsulActivity.this);
+                        LayoutInflater inflater = getLayoutInflater();
+                        final View dialogView = inflater.inflate(R.layout.form_hasil, null);
+                        alertDialogBuilder.setView(dialogView);
+                        hasil = (TextView) dialogView.findViewById(R.id.hasil);
+                        rekomendasi = (TextView) dialogView.findViewById(R.id.solusi);
+                        hasil.setText(hasil_t);
+                        rekomendasi.setText(solusi);
                         alertDialogBuilder.setTitle("Result");
-                        alertDialogBuilder.setMessage(response);
+                        //alertDialogBuilder.setMessage("Hasil Similarity: "+hasil_t+"\n\n"+"Rekomendasi: "+solusi);
                         alertDialogBuilder
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
@@ -117,7 +146,7 @@ public class KonsulActivity extends AppCompatActivity {
                             params.put("kode_obat[" + j + "]", idObatDipilih.get(j));
                         }
                         for (int k = 0; k < idPenyakitDipilih.size(); k++) {
-                            params.put("kode_penyakit[" + k + "]", idObatDipilih.get(k));
+                            params.put("kode_penyakit[" + k + "]", idPenyakitDipilih.get(k));
                         }
                         return params;
                     }
@@ -128,6 +157,7 @@ public class KonsulActivity extends AppCompatActivity {
     }
 
     private void getSpinnerGejala() {
+        refreshKonsul.setRefreshing(true);
         StringRequest requestGejala = new StringRequest(Url.urlGejala, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -143,12 +173,14 @@ public class KonsulActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(KonsulActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                refreshKonsul.setRefreshing(false);
             }
         });
         reqGejala.add(requestGejala);
     }
 
     private void getDataGejala(JSONArray resultGejala) {
+        refreshKonsul.setRefreshing(false);
         for (int i = 0; i < resultGejala.length(); i++) {
             try {
                 JSONObject obj = resultGejala.getJSONObject(i);
@@ -183,6 +215,7 @@ public class KonsulActivity extends AppCompatActivity {
     }
 
     private void getSpinnerPenyakit() {
+        refreshKonsul.setRefreshing(true);
         StringRequest requestPenyakit = new StringRequest(Url.urlPenyakit, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -198,12 +231,14 @@ public class KonsulActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(KonsulActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                refreshKonsul.setRefreshing(false);
             }
         });
         reqPenyakit.add(requestPenyakit);
     }
 
     private void getDataPenyakit(JSONArray resultPenyakit) {
+        refreshKonsul.setRefreshing(false);
         for (int i = 0; i < resultPenyakit.length(); i++) {
             try {
                 JSONObject obj = resultPenyakit.getJSONObject(i);
@@ -236,6 +271,7 @@ public class KonsulActivity extends AppCompatActivity {
     }
 
     public void getSpinnerObat() {
+        refreshKonsul.setRefreshing(true);
         StringRequest requestObat = new StringRequest(Url.urlObat, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -250,13 +286,15 @@ public class KonsulActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(KonsulActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                refreshKonsul.setRefreshing(false);
             }
         });
         reqObat.add(requestObat);
     }
 
     private void getDataObat(JSONArray resultObat) {
+        refreshKonsul.setRefreshing(false);
         for (int i = 0; i < resultObat.length(); i++) {
             try {
                 JSONObject obj = resultObat.getJSONObject(i);
@@ -292,5 +330,18 @@ public class KonsulActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onRefresh() {
+        listPenyakit.clear();
+        obat.clear();
+        listGejala.clear();
+        gejala.clear();
+        listObat.clear();
+        penyakit.clear();
+        getSpinnerPenyakit();
+        getSpinnerObat();
+        getSpinnerGejala();
     }
 }
