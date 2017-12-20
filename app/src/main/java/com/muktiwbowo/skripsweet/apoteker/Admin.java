@@ -14,8 +14,16 @@ public class Admin {
     String badanBerat;
     String obatNama;
     String gejalaNama;
+    String jenisHabbit;
     String solusi;
 
+    public String getJenisHabbit() {
+        return jenisHabbit;
+    }
+
+    public void setJenisHabbit(String jenisHabbit) {
+        this.jenisHabbit = jenisHabbit;
+    }
     public String getKasusId() {
         return kasusId;
     }

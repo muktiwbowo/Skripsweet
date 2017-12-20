@@ -20,6 +20,10 @@
             android:id="@+id/in_penyakit"
             android:icon="@drawable/ic_penyakit"
             android:title="Penyakit" />
+        <item
+            android:id="@+id/in_habbit"
+            android:icon="@drawable/ic_gejala"
+            android:title="Habbit" />
     </group>
 
     <item android:title="Tentang">

@@ -70,6 +70,7 @@ public class KasusActivity extends AppCompatActivity implements SwipeRefreshLayo
                 extras.putString("namaGejala", k.getNamaGejala());
                 extras.putString("namaObat", k.getNamaObat());
                 extras.putString("namaPenyakit", k.getNamaPenyakit());
+                extras.putString("jenisHabbit",k.getJenisHabbit());
                 extras.putString("rekomendasi", k.getRekomendasi());
                 intent.putExtras(extras);
                 startActivity(intent);
@@ -99,6 +100,7 @@ public class KasusActivity extends AppCompatActivity implements SwipeRefreshLayo
                                     k.setBeratBadan(obj.getString("berat_badan"));
                                     k.setNamaGejala(obj.getString("nama_gejala"));
                                     k.setNamaObat(obj.getString("nama_obat"));
+                                    k.setJenisHabbit(obj.getString("jenis_habbit"));
                                     k.setRekomendasi(obj.getString("rekomendasi"));
                                     list.add(k);
                                 } catch (JSONException e) {

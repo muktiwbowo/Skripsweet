@@ -9,7 +9,7 @@ import com.muktiwbowo.skripsweet.R;
 public class DetailKasusActivity extends AppCompatActivity {
 
     TextView namaKasus, namaPasien, gender, usia, beratBadan, namaGejala,
-            namaObat, namaPenyakit, rekomendasi;
+            namaObat, namaPenyakit, jenisHabbit, rekomendasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class DetailKasusActivity extends AppCompatActivity {
         namaGejala = (TextView) findViewById(R.id.nama_gejala);
         namaObat = (TextView) findViewById(R.id.nama_obat);
         namaPenyakit = (TextView) findViewById(R.id.nama_penyakit);
+        jenisHabbit = (TextView) findViewById(R.id.jenis_habbit);
         rekomendasi = (TextView) findViewById(R.id.rekomendasi);
 
         Bundle extras = getIntent().getExtras();
@@ -36,6 +37,7 @@ public class DetailKasusActivity extends AppCompatActivity {
         String NamaGejala = extras.getString("namaGejala");
         String NamaObat = extras.getString("namaObat");
         String NamaPenyakit = extras.getString("namaPenyakit");
+        String JenisHabbit = extras.getString("jenisHabbit");
         String Rekomendasi = extras.getString("rekomendasi");
 
         namaKasus.setText(NamaKasus);
@@ -50,6 +52,7 @@ public class DetailKasusActivity extends AppCompatActivity {
         namaGejala.setText(NamaGejala);
         namaObat.setText(NamaObat);
         namaPenyakit.setText(NamaPenyakit);
+        jenisHabbit.setText(JenisHabbit);
         rekomendasi.setText(Rekomendasi);
     }
 

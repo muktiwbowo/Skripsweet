@@ -85,6 +85,13 @@
                 <io.apptik.widget.multiselectspinner.MultiSelectSpinner
                     android:id="@+id/spinerObat"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <io.apptik.widget.multiselectspinner.MultiSelectSpinner
+                    android:id="@+id/spinerHabbit"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

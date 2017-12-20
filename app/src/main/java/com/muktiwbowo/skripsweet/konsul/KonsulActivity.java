@@ -36,15 +36,16 @@ import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
 
 public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    RequestQueue requestQueue, reqObat, reqGejala, reqPenyakit;
+    RequestQueue requestQueue, reqObat, reqGejala, reqPenyakit, reqHabbit;
     Button btnCheck;
-    MultiSelectSpinner spinnerGejala, spinnerObat, spinnerPenyakit;
-    ArrayList<String> obat, gejala, penyakit;
-    JSONArray resultObat, resultGejala, resultPenyakit;
+    MultiSelectSpinner spinnerGejala, spinnerObat, spinnerPenyakit, spinnerHabbit;
+    ArrayList<String> obat, gejala, penyakit, habbit;
+    JSONArray resultObat, resultGejala, resultPenyakit, resultHabbit;
     List<KonsulGejala> listGejala;
     List<KonsulObat> listObat;
     List<KonsulPenyakit> listPenyakit;
-    List<String> idGejalaDipilih, idObatDipilih, idPenyakitDipilih;
+    List<KonsulHabbit> listHabbit;
+    List<String> idGejalaDipilih, idObatDipilih, idPenyakitDipilih, idHabbitDipilih;
     private ProgressDialog progressDialog;
     String hasil_t, solusi;
     private TextView hasil, rekomendasi;
@@ -60,19 +61,23 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
         reqObat = Volley.newRequestQueue(this);
         reqGejala = Volley.newRequestQueue(this);
         reqPenyakit = Volley.newRequestQueue(this);
+        reqHabbit = Volley.newRequestQueue(this);
         progressDialog = new ProgressDialog(this);
 
         obat = new ArrayList<String>();
         gejala = new ArrayList<String>();
         penyakit = new ArrayList<String>();
+        habbit = new ArrayList<String>();
         listGejala = new ArrayList<>();
         listObat = new ArrayList<>();
         listPenyakit = new ArrayList<>();
+        listHabbit = new ArrayList<>();
 
         refreshKonsul = (SwipeRefreshLayout) findViewById(R.id.refreshKonsul);
         spinnerGejala = (MultiSelectSpinner) findViewById(R.id.spinerGejala);
         spinnerPenyakit = (MultiSelectSpinner) findViewById(R.id.spinerPenyakit);
         spinnerObat = (MultiSelectSpinner) findViewById(R.id.spinerObat);
+        spinnerHabbit = (MultiSelectSpinner) findViewById(R.id.spinerHabbit);
         btnCheck = (Button) findViewById(R.id.btn_check);
         refreshKonsul.setOnRefreshListener(this);
         refreshKonsul.post(new Runnable() {
@@ -82,6 +87,7 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
                 getSpinnerGejala();
                 getSpinnerPenyakit();
                 getSpinnerObat();
+                getSpinnerHabbit();
             }
         });
 
@@ -139,14 +145,33 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<String, String>();
-                        for (int i = 0; i < idGejalaDipilih.size(); i++) {
-                            params.put("id_gejala[" + i + "]", idGejalaDipilih.get(i));
+                        if (idGejalaDipilih == null) {
+                            return null;
+                        } else {
+                            for (int i = 0; i < idGejalaDipilih.size(); i++) {
+                                params.put("id_gejala[" + i + "]", idGejalaDipilih.get(i));
+                            }
                         }
-                        for (int j = 0; j < idObatDipilih.size(); j++) {
-                            params.put("kode_obat[" + j + "]", idObatDipilih.get(j));
+                        if (idObatDipilih == null) {
+                            return null;
+                        } else {
+                            for (int j = 0; j < idObatDipilih.size(); j++) {
+                                params.put("kode_obat[" + j + "]", idObatDipilih.get(j));
+                            }
                         }
-                        for (int k = 0; k < idPenyakitDipilih.size(); k++) {
-                            params.put("kode_penyakit[" + k + "]", idPenyakitDipilih.get(k));
+                        if (idPenyakitDipilih == null) {
+                            return null;
+                        } else {
+                            for (int k = 0; k < idPenyakitDipilih.size(); k++) {
+                                params.put("kode_penyakit[" + k + "]", idPenyakitDipilih.get(k));
+                            }
+                        }
+                        if (idHabbitDipilih == null){
+                            return null;
+                        }else {
+                            for (int l = 0; l<idHabbitDipilih.size(); l++){
+                                params.put("id_habbit["+ l + "]", idHabbitDipilih.get(l));
+                            }
                         }
                         return params;
                     }
@@ -154,6 +179,64 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
                 requestQueue.add(stringRequest);
             }
         });
+    }
+
+    private void getSpinnerHabbit() {
+        refreshKonsul.setRefreshing(true);
+        StringRequest requestHabbit = new StringRequest(Request.Method.GET, Url.urlHabbit, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    resultHabbit = object.getJSONArray("habbit");
+                    getDataHabbit(resultHabbit);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(KonsulActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                refreshKonsul.setRefreshing(false);
+            }
+        });
+        reqHabbit.add(requestHabbit);
+    }
+
+    private void getDataHabbit(JSONArray resultHabbit) {
+        refreshKonsul.setRefreshing(false);
+        for (int i=0; i<resultHabbit.length(); i++){
+            try {
+                JSONObject obj = resultHabbit.getJSONObject(i);
+                habbit.add(obj.getString("jenis_habbit"));
+                KonsulHabbit habbit = new KonsulHabbit();
+                habbit.setIdHabbit(obj.getString("id_habbit"));
+                habbit.setJenisHabbit(obj.getString("jenis_habbit"));
+                listHabbit.add(habbit);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        spinnerHabbit.setItems(habbit).setListener(new MultiSelectSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+
+                idHabbitDipilih = new ArrayList<>();
+                //StringBuilder builder = new StringBuilder();
+
+                for (int i = 0; i < selected.length; i++) {
+                    if (selected[i]) {
+                        //builder.append(gejala.get(i).getIdGejala()).append(" ");
+                        idHabbitDipilih.add(listHabbit.get(i).getIdHabbit());
+                    }
+                }
+            }
+        })
+                .setAllCheckedText("Semua Terpilih")
+                .setAllUncheckedText("Pilih Habbit")
+                .setSelectAll(false)
+                .setTitle("Pilih Habbit");
     }
 
     private void getSpinnerGejala() {
@@ -340,8 +423,11 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
         gejala.clear();
         listObat.clear();
         penyakit.clear();
+        listHabbit.clear();
+        habbit.clear();
         getSpinnerPenyakit();
         getSpinnerObat();
         getSpinnerGejala();
+        getSpinnerHabbit();
     }
 }

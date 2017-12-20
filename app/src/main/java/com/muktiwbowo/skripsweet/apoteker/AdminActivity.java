@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.muktiwbowo.skripsweet.fragment.InputHabbit;
 import com.muktiwbowo.skripsweet.login.Session;
 import com.muktiwbowo.skripsweet.other.AboutActivity;
 import com.muktiwbowo.skripsweet.fragment.InputGejala;
@@ -119,6 +120,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.in_penyakit:
                 fragment = new InputPenyakit();
+                break;
+            case R.id.in_habbit:
+                fragment = new InputHabbit();
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(AdminActivity.this, AboutActivity.class));

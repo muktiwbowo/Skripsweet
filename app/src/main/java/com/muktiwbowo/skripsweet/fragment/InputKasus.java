@@ -83,6 +83,7 @@ public class InputKasus extends Fragment implements SwipeRefreshLayout.OnRefresh
                 extras.putString("namaGejala", a.getGejalaNama());
                 extras.putString("namaObat", a.getObatNama());
                 extras.putString("namaPenyakit", a.getPenyakitNama());
+                extras.putString("jenisHabbit",a.getJenisHabbit());
                 extras.putString("rekomendasi", a.getSolusi());
                 intent.putExtras(extras);
                 startActivity(intent);
@@ -111,6 +112,7 @@ public class InputKasus extends Fragment implements SwipeRefreshLayout.OnRefresh
                             a.setGejalaNama(obj.getString("nama_gejala"));
                             a.setObatNama(obj.getString("nama_obat"));
                             a.setPenyakitNama(obj.getString("nama_penyakit"));
+                            a.setJenisHabbit(obj.getString("jenis_habbit"));
                             a.setSolusi(obj.getString("rekomendasi"));
                             list.add(a);
                         } catch (JSONException e) {

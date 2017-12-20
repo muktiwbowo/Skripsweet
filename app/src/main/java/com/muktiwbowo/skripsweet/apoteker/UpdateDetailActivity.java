@@ -28,7 +28,7 @@ public class UpdateDetailActivity extends AppCompatActivity {
 
     private static final String url = "https://dabudabu.000webhostapp.com/farnotifphp/updatekasus.php";
     EditText edtId, edtNamaKasus, edtNamaPasien, edtGender, edtUsia,
-            edtBB, edtGejala, edtObat, edtPenyakit, edtSolusi;
+            edtBB, edtGejala, edtObat, edtPenyakit, edtHabbit, edtSolusi;
     Button btnUpdate;
     RequestQueue requestQueue;
 
@@ -49,6 +49,7 @@ public class UpdateDetailActivity extends AppCompatActivity {
         edtGejala = (EditText) findViewById(R.id.namaGejala);
         edtObat = (EditText) findViewById(R.id.namaObat);
         edtPenyakit = (EditText) findViewById(R.id.namaPenyakit);
+        edtHabbit = (EditText) findViewById(R.id.jenisHabbit);
         edtSolusi = (EditText) findViewById(R.id.solusi);
         btnUpdate = (Button) findViewById(R.id.btn_update);
         Bundle extras = getIntent().getExtras();
@@ -61,6 +62,7 @@ public class UpdateDetailActivity extends AppCompatActivity {
         String namaGejala = extras.getString("namaGejala");
         String namaObat = extras.getString("namaObat");
         String namaPenyakit = extras.getString("namaPenyakit");
+        String jenisHabbit = extras.getString("jenisHabbit");
         String solusi = extras.getString("rekomendasi");
 
         edtId.setText(idKasus);
@@ -78,6 +80,11 @@ public class UpdateDetailActivity extends AppCompatActivity {
             edtGejala.setText(namaGejala);
             edtObat.setText(namaObat);
             edtPenyakit.setText(namaPenyakit);
+            if (jenisHabbit == "null"){
+                edtHabbit.setText("Tidak memiliki habbit tertentu");
+            }else {
+                edtHabbit.setText(jenisHabbit);
+            }
             edtSolusi.setText(solusi);
 
         
