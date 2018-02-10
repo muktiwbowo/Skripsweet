@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,9 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
 
     RequestQueue requestQueue, reqObat, reqGejala, reqPenyakit, reqHabbit;
     Button btnCheck;
+    EditText edtNama,edtUsia,edtBB;
+    RadioGroup rgGender;
+    RadioButton rbGender;
     MultiSelectSpinner spinnerGejala, spinnerObat, spinnerPenyakit, spinnerHabbit;
     ArrayList<String> obat, gejala, penyakit, habbit;
     JSONArray resultObat, resultGejala, resultPenyakit, resultHabbit;
@@ -78,7 +84,12 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
         spinnerPenyakit = (MultiSelectSpinner) findViewById(R.id.spinerPenyakit);
         spinnerObat = (MultiSelectSpinner) findViewById(R.id.spinerObat);
         spinnerHabbit = (MultiSelectSpinner) findViewById(R.id.spinerHabbit);
+        rgGender = (RadioGroup) findViewById(R.id.rb_gender);
+        edtNama = (EditText) findViewById(R.id.edt_name);
+        edtUsia = (EditText) findViewById(R.id.edt_age);
+        edtBB = (EditText) findViewById(R.id.edt_weight);
         btnCheck = (Button) findViewById(R.id.btn_check);
+
         refreshKonsul.setOnRefreshListener(this);
         refreshKonsul.post(new Runnable() {
             @Override
@@ -121,7 +132,6 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
                         hasil.setText(hasil_t);
                         rekomendasi.setText(solusi);
                         alertDialogBuilder.setTitle("Result");
-                        //alertDialogBuilder.setMessage("Hasil Similarity: "+hasil_t+"\n\n"+"Rekomendasi: "+solusi);
                         alertDialogBuilder
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
@@ -145,6 +155,13 @@ public class KonsulActivity extends AppCompatActivity implements SwipeRefreshLay
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<String, String>();
+                        params.put("nama_pasien", edtNama.getText().toString());
+                        params.put("usia", edtUsia.getText().toString());
+                        int selectedid = rgGender.getCheckedRadioButtonId();
+                        rbGender = (RadioButton) findViewById(selectedid);
+                        String gender = rbGender.getText().toString();
+                        params.put("gender",gender);
+                        params.put("berat_badan", edtBB.getText().toString());
                         if (idGejalaDipilih == null) {
                             return null;
                         } else {

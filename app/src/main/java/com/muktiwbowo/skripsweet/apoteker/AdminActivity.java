@@ -91,17 +91,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            keluarApp();
-            super.onBackPressed();
-        }
-    }
-
     private void displaySelectedScreen(int itemId) {
 
         //creating fragment object

@@ -49,14 +49,14 @@
                         android:id="@+id/radio_boy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="pria"
+                        android:text="@string/radio_boy"
                         android:textAllCaps="true" />
 
                     <RadioButton
                         android:id="@+id/radio_girl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="wanita"
+                        android:text="@string/radio_girl"
                         android:textAllCaps="true" />
                 </RadioGroup>
 

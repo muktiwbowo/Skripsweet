@@ -5,6 +5,8 @@
     <string name="konsul_name">Konsultasi</string>
     <string name="about">Tentang</string>
     <string name="title_activity_admin">Apoteker</string>
+    <string name="radio_boy">L</string>
+    <string name="radio_girl">P</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
